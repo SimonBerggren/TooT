@@ -12,17 +12,17 @@ namespace TooT
 
     public static class EventManager
     {
-        private static Dictionary<Event, MulticastDelegate> mCallbacks;
+        private static Dictionary<Event, Delegate> mCallbacks;
 
         public static void Initialize()
         {
-            mCallbacks = new Dictionary<Event, MulticastDelegate>();
+            mCallbacks = new Dictionary<Event, Delegate>();
             mCallbacks.Add(Event.OnCallback, null);
         }
 
         public static void Fire(Event _EventId, params object[] args)
         {
-            MulticastDelegate callback = mCallbacks[_EventId];
+            Delegate callback = mCallbacks[_EventId];
             if (callback != null)
             {
                 Delegate[] list = callback.GetInvocationList();
@@ -32,14 +32,14 @@ namespace TooT
             }
         }
 
-        public static void Subscribe(Event _EventId, MulticastDelegate _Callback)
+        public static void Subscribe(Event _EventId, Delegate _Callback)
         {
-            mCallbacks[_EventId] = (MulticastDelegate)Delegate.Combine(mCallbacks[_EventId], _Callback);
+            mCallbacks[_EventId] = Delegate.Combine(mCallbacks[_EventId], _Callback);
         }
 
-        public static void Unsubscribe(Event _EventId, MulticastDelegate _Callback)
+        public static void Unsubscribe(Event _EventId, Delegate _Callback)
         {
-            mCallbacks[_EventId] = (MulticastDelegate)Delegate.Remove(mCallbacks[_EventId], _Callback);
+            mCallbacks[_EventId] = Delegate.Remove(mCallbacks[_EventId], _Callback);
         }
 
         public static void ClearSubscriptions(Event _EventId)
