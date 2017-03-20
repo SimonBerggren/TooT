@@ -39,9 +39,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Content\ContentManager.cs" />
-    <Compile Include="Core\InputManager.cs" />
+    <Compile Include="Core\AnimatedTexture.cs" />
+    <Compile Include="Core\Enemy.cs" />
+    <Compile Include="Core\GameObject.cs" />
+    <Compile Include="Core\Managers\EventManager\Events.cs" />
+    <Compile Include="Core\Managers\GameManager.cs" />
+    <Compile Include="Core\Managers\InputManager.cs" />
+    <Compile Include="Core\Managers\RoomManager.cs" />
+    <Compile Include="Core\Managers\UIManager.cs" />
+    <Compile Include="Core\MapGenerator.cs" />
+    <Compile Include="Core\Pawn.cs" />
+    <Compile Include="Core\Player.cs" />
+    <Compile Include="Core\Room.cs" />
     <Compile Include="Core\Utils.cs" />
-    <Compile Include="Core\EventManager.cs" />
+    <Compile Include="Core\Managers\EventManager\EventManager.cs" />
     <Compile Include="Core\TootGame.cs" />
     <Compile Include="Core\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,6 +63,7 @@
     <Compile Include="SceneSystem\Menu\MenuScene.cs" />
     <Compile Include="SceneSystem\Popups\AcceptBox.cs" />
     <Compile Include="SceneSystem\Popups\MessageBox.cs" />
+    <Compile Include="SceneSystem\Scenes\GameScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

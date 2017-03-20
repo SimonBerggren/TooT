@@ -9,7 +9,7 @@ namespace TooT
     abstract class MenuScene : Scene
     {
         protected MenuEntry mSelectedEntry { get { return mEntries[mSelectedIndex]; } }
-        public EntryDesc Desc { get; private set; }
+        internal EntryDesc Desc { get; private set; }
 
         protected List<MenuEntry> mEntries;
         int mSelectedIndex;
@@ -18,7 +18,7 @@ namespace TooT
         /// If you do not send a description as parameter you MUST use Set_Desc!
         /// </summary>
         /// <param name="_Desc"></param>
-        public MenuScene(EntryDesc _Desc = null) : base(false)
+        internal MenuScene(EntryDesc _Desc = null) : base(false)
         {
             mTransitionOnTime = 0.5f;
             mTransitionOffTime = 0.5f;
@@ -26,9 +26,9 @@ namespace TooT
             mEntries = new List<MenuEntry>();
         }
 
-        public void Set_Desc(EntryDesc _Desc) { Desc = new EntryDesc(_Desc); }
+        internal void Set_Desc(EntryDesc _Desc) { Desc = new EntryDesc(_Desc); }
 
-        public void AddEntry(string _Text, Action _Action = null)
+        internal void AddEntry(string _Text, Action _Action = null)
         {
             if(Desc == null) throw new Exception("No description specified!");
 
@@ -49,7 +49,7 @@ namespace TooT
             mSelectedEntry.IsSelected = true;
         }
 
-        public override bool HandleTransition(GameTime _GT)
+        internal override bool HandleTransition(GameTime _GT)
         {
             for (int i = 0; i < mEntries.Count; ++i)
                 mEntries[i].HandleTransition(mState, mTransitionStatus);
@@ -57,7 +57,7 @@ namespace TooT
             return base.HandleTransition(_GT);
         }
 
-        public override void HandleInput()
+        internal override void HandleInput()
         {
             if (mEntries.Count <= 0) return;
 
@@ -69,13 +69,13 @@ namespace TooT
                 mSelectedEntry.DoAction();
         }
 
-        public override void Update(GameTime _GT)
+        internal override void Update(GameTime _GT)
         {
             for (int i = 0; i < mEntries.Count; ++i)
                 mEntries[i].Update(_GT);
         }
 
-        public override void Draw(SpriteBatch _SB)
+        internal override void Draw(SpriteBatch _SB)
         {
             for (int i = 0; i < mEntries.Count; ++i)
                 mEntries[i].Draw(_SB);

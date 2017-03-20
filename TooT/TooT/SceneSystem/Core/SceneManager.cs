@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace TooT
 {
-    public static class SceneManager
+    internal static class SceneManager
     {
         static List<Scene> mScenes = new List<Scene>();    // list of active scenes
-        public static int Width { get; private set; }
-        public static int Height { get; private set; }
+        internal static int Width { get; private set; }
+        internal static int Height { get; private set; }
 
-        public static void Initialize(int _Width = -1, int _Height = -1)
+        internal static void Initialize(int _Width = -1, int _Height = -1)
         {
             Width = _Width == -1 ? TooTGame.Width : _Width;
             Height = _Height == -1 ? TooTGame.Height : Height;
@@ -22,7 +22,7 @@ namespace TooT
         /// </summary>
         /// <param name="_NewScene">New scene to add.</param>
         /// <param name="_IsPopup">If new scene will be a popup.</param>
-        public static void AddScene(Scene _NewScene, bool _IsPopup = false)
+        internal static void AddScene(Scene _NewScene, bool _IsPopup = false)
         {
             if (mScenes.Count > 0)
             {
@@ -41,7 +41,7 @@ namespace TooT
         /// Dont call this to close a scene, it is automatically called when a scene closes.
         /// </summary>
         /// <param name="_Scene">Scene to remove.</param>
-        public static void CloseScene(Scene _Scene)
+        internal static void CloseScene(Scene _Scene)
         {
             int index = mScenes.IndexOf(_Scene) - 1;
             if (index >= 0)
@@ -51,7 +51,7 @@ namespace TooT
             }
         }
 
-        public static bool Update(GameTime _GT)
+        internal static bool Update(GameTime _GT)
         {
             if (mScenes.Count <= 0)
                 return false;
@@ -84,7 +84,7 @@ namespace TooT
             return true;
         }
 
-        public static void Draw(SpriteBatch _SB)
+        internal static void Draw(SpriteBatch _SB)
         {
             _SB.Draw(ContentManager.MenuBackground, new Rectangle(0, 0, Width, Height), Color.White);
 
@@ -99,7 +99,7 @@ namespace TooT
             }
         }
 
-        public static void FadeToBlack(SpriteBatch _SB, float _Percentage)
+        internal static void FadeToBlack(SpriteBatch _SB, float _Percentage)
         {
             _SB.Draw(ContentManager.Dot, new Rectangle(0, 0, Width, Height), Color.Black * _Percentage);
         }

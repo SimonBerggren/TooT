@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TooT
 {
-    public class TooTGame : Game
+    internal class TooTGame : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        public const int Width = 1280;
-        public const int Height = 720;
+        internal const int Width = 1280;
+        internal const int Height = 720;
 
-        public TooTGame()
+        internal TooTGame()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = Width;
@@ -32,7 +32,7 @@ namespace TooT
         protected override void Update(GameTime gameTime)
         {
             InputManager.Update();
-            if (InputManager.IsKeyPressed(Keys.Escape) || !SceneManager.Update(gameTime))
+            if (/*InputManager.IsKeyPressed(Keys.Escape) ||*/ !SceneManager.Update(gameTime))
                 Exit();
         }
 

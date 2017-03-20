@@ -3,69 +3,69 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TooT
 {
-    public static class InputManager
+    internal static class InputManager
     {
         #region PlayerOne
-        public static bool PlayerOneJoystickUp { get { return mPlayerOneJoystickUp; } }
-        public static bool PlayerOneJoystickDown { get { return mPlayerOneJoystickDown; } }
-        public static bool PlayerOneJoystickLeft { get { return mPlayerOneJoystickLeft; } }
-        public static bool PlayerOneJoystickRight { get { return mPlayerOneJoystickRight; } }
+        internal static bool PlayerOneJoystickUp { get { return mPlayerOneJoystickUp; } }
+        internal static bool PlayerOneJoystickDown { get { return mPlayerOneJoystickDown; } }
+        internal static bool PlayerOneJoystickLeft { get { return mPlayerOneJoystickLeft; } }
+        internal static bool PlayerOneJoystickRight { get { return mPlayerOneJoystickRight; } }
         private static bool mPlayerOneJoystickUp;
         private static bool mPlayerOneJoystickDown;
         private static bool mPlayerOneJoystickLeft;
         private static bool mPlayerOneJoystickRight;
 
-        public static bool PlayerOneButtonMoveJump { get { return mPlayerOneButtonMoveJump; } }
-        public static bool PlayerOneButtonMoveLeft { get { return mPlayerOneButtonMoveLeft; } }
-        public static bool PlayerOneButtonMoveRight { get { return mPlayerOneButtonMoveRight; } }
+        internal static bool PlayerOneButtonMoveJump { get { return mPlayerOneButtonMoveJump; } }
+        internal static bool PlayerOneButtonMoveLeft { get { return mPlayerOneButtonMoveLeft; } }
+        internal static bool PlayerOneButtonMoveRight { get { return mPlayerOneButtonMoveRight; } }
         private static bool mPlayerOneButtonMoveLeft;
         private static bool mPlayerOneButtonMoveRight;
         private static bool mPlayerOneButtonMoveJump;
 
-        public static bool PlayerOneButtonSpawnOne { get { return mPlayerOneButtonSpawnOne; } }
-        public static bool PlayerOneButtonSpawnTwo { get { return mPlayerOneButtonSpawnTwo; } }
-        public static bool PlayerOneButtonSpawnThree { get { return mPlayerOneButtonSpawnThree; } }
+        internal static bool PlayerOneButtonSpawnOne { get { return mPlayerOneButtonSpawnOne; } }
+        internal static bool PlayerOneButtonSpawnTwo { get { return mPlayerOneButtonSpawnTwo; } }
+        internal static bool PlayerOneButtonSpawnThree { get { return mPlayerOneButtonSpawnThree; } }
         private static bool mPlayerOneButtonSpawnOne;
         private static bool mPlayerOneButtonSpawnTwo;
         private static bool mPlayerOneButtonSpawnThree;
         #endregion
 
         #region PlayerTwo
-        public static bool PlayerTwoJoystickUp { get { return mPlayerTwoJoystickUp; } }
-        public static bool PlayerTwoJoystickDown { get { return mPlayerTwoJoystickDown; } }
-        public static bool PlayerTwoJoystickLeft { get { return mPlayerTwoJoystickLeft; } }
-        public static bool PlayerTwoJoystickRight { get { return mPlayerTwoJoystickRight; } }
+        internal static bool PlayerTwoJoystickUp { get { return mPlayerTwoJoystickUp; } }
+        internal static bool PlayerTwoJoystickDown { get { return mPlayerTwoJoystickDown; } }
+        internal static bool PlayerTwoJoystickLeft { get { return mPlayerTwoJoystickLeft; } }
+        internal static bool PlayerTwoJoystickRight { get { return mPlayerTwoJoystickRight; } }
         private static bool mPlayerTwoJoystickUp;
         private static bool mPlayerTwoJoystickDown;
         private static bool mPlayerTwoJoystickLeft;
         private static bool mPlayerTwoJoystickRight;
 
-        public static bool PlayerTwoButtonMoveJump { get { return mPlayerTwoButtonMoveJump; } }
-        public static bool PlayerTwoButtonMoveLeft { get { return mPlayerTwoButtonMoveLeft; } }
-        public static bool PlayerTwoButtonMoveRight { get { return mPlayerTwoButtonMoveRight; } }
+        internal static bool PlayerTwoButtonMoveJump { get { return mPlayerTwoButtonMoveJump; } }
+        internal static bool PlayerTwoButtonMoveLeft { get { return mPlayerTwoButtonMoveLeft; } }
+        internal static bool PlayerTwoButtonMoveRight { get { return mPlayerTwoButtonMoveRight; } }
         private static bool mPlayerTwoButtonMoveLeft;
         private static bool mPlayerTwoButtonMoveRight;
         private static bool mPlayerTwoButtonMoveJump;
 
-        public static bool PlayerTwoButtonSpawnOne { get { return mPlayerTwoButtonSpawnOne; } }
-        public static bool PlayerTwoButtonSpawnTwo { get { return mPlayerTwoButtonSpawnTwo; } }
-        public static bool PlayerTwoButtonSpawnThree { get { return mPlayerTwoButtonSpawnThree; } }
+        internal static bool PlayerTwoButtonSpawnOne { get { return mPlayerTwoButtonSpawnOne; } }
+        internal static bool PlayerTwoButtonSpawnTwo { get { return mPlayerTwoButtonSpawnTwo; } }
+        internal static bool PlayerTwoButtonSpawnThree { get { return mPlayerTwoButtonSpawnThree; } }
         private static bool mPlayerTwoButtonSpawnOne;
         private static bool mPlayerTwoButtonSpawnTwo;
         private static bool mPlayerTwoButtonSpawnThree;
         #endregion
 
         #region Both
-        public static bool EitherJoystickUp { get { return mPlayerOneJoystickUp || mPlayerTwoJoystickUp; } }
-        public static bool EitherJoystickDown { get { return mPlayerOneJoystickDown || mPlayerTwoJoystickDown; } }
-        public static bool EitherJoystickLeft { get { return mPlayerOneJoystickLeft || mPlayerTwoJoystickLeft; } }
-        public static bool EitherJoystickRight { get { return mPlayerOneJoystickRight || mPlayerTwoJoystickRight; } }
+        internal static bool EitherJoystickUp { get { return mPlayerOneJoystickUp || mPlayerTwoJoystickUp; } }
+        internal static bool EitherJoystickDown { get { return mPlayerOneJoystickDown || mPlayerTwoJoystickDown; } }
+        internal static bool EitherJoystickLeft { get { return mPlayerOneJoystickLeft || mPlayerTwoJoystickLeft; } }
+        internal static bool EitherJoystickRight { get { return mPlayerOneJoystickRight || mPlayerTwoJoystickRight; } }
         #endregion
 
         private static KeyboardState mOldKeyboardState, mKeyboardState;
         private static MouseState mOldMouseState, mMouseState;
 
-        public static void Update()
+        internal static void Update()
         {
             mOldKeyboardState = mKeyboardState;
             mOldMouseState = mMouseState;
@@ -95,42 +95,42 @@ namespace TooT
             mPlayerTwoJoystickRight = IsKeyPressed(Keys.D);
         }
 
-        public static bool IsKeyClicked(Keys _Key)
+        internal static bool IsKeyClicked(Keys _Key)
         {
             return (mKeyboardState.IsKeyDown(_Key) && mOldKeyboardState.IsKeyUp(_Key)) ;
         }
 
-        public static bool IsKeyPressed(Keys _Key)
+        internal static bool IsKeyPressed(Keys _Key)
         {
             return mKeyboardState.IsKeyDown(_Key);
         }
 
-        public static bool IsLeftButtonDown()
+        internal static bool IsLeftButtonDown()
         {
             return mMouseState.LeftButton == ButtonState.Pressed;
         }
 
-        public static bool IsLeftButtonUp()
+        internal static bool IsLeftButtonUp()
         {
             return mMouseState.LeftButton == ButtonState.Released;
         }
 
-        public static bool LeftButtonClicked()
+        internal static bool LeftButtonClicked()
         {
             return mOldMouseState.LeftButton == ButtonState.Released && mMouseState.LeftButton == ButtonState.Pressed;
         }
 
-        public static bool IsLeftButtonReleased()
+        internal static bool IsLeftButtonReleased()
         {
             return mOldMouseState.LeftButton == ButtonState.Pressed && mMouseState.LeftButton == ButtonState.Released;
         }
 
-        public static Vector2 MousePosition()
+        internal static Vector2 MousePosition()
         {
             return mMouseState.Position.ToVector2();
         }
 
-        public static Point MousePoint()
+        internal static Point MousePoint()
         {
             return mMouseState.Position;
         }

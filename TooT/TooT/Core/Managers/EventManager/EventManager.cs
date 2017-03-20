@@ -3,24 +3,18 @@ using System.Collections.Generic;
 
 namespace TooT
 {
-    public delegate void OnCallback(string param);
-
-    public enum Event
-    {
-        OnCallback = 0,
-    }
-
-    public static class EventManager
+    internal static class EventManager
     {
         private static Dictionary<Event, Delegate> mCallbacks;
 
-        public static void Initialize()
+        internal static void Initialize()
         {
             mCallbacks = new Dictionary<Event, Delegate>();
-            mCallbacks.Add(Event.OnCallback, null);
+            foreach (Event E in Enum.GetValues(typeof(Event)))
+                mCallbacks.Add(E, null);
         }
 
-        public static void Fire(Event _EventId, params object[] args)
+        internal static void Fire(Event _EventId, params object[] args)
         {
             Delegate callback = mCallbacks[_EventId];
             if (callback != null)
@@ -32,22 +26,22 @@ namespace TooT
             }
         }
 
-        public static void Subscribe(Event _EventId, Delegate _Callback)
+        internal static void Subscribe(Event _EventId, Delegate _Callback)
         {
             mCallbacks[_EventId] = Delegate.Combine(mCallbacks[_EventId], _Callback);
         }
 
-        public static void Unsubscribe(Event _EventId, Delegate _Callback)
+        internal static void Unsubscribe(Event _EventId, Delegate _Callback)
         {
             mCallbacks[_EventId] = Delegate.Remove(mCallbacks[_EventId], _Callback);
         }
 
-        public static void ClearSubscriptions(Event _EventId)
+        internal static void ClearSubscriptions(Event _EventId)
         {
             mCallbacks[_EventId] = null;
         }
 
-        public static void ClearSubscriptions()
+        internal static void ClearSubscriptions()
         {
             mCallbacks.Clear();
         }
