@@ -20,7 +20,7 @@ namespace TooT
         internal float Scale { get { return mScale; } }
         private float mScale;
         internal float Rotation { get { return mRotation; } }
-        private float mRotation;
+        protected float mRotation;
         internal Color? OverrideColor = null;
 
         internal GameObject(Vector2 _Pos, float _Scale)

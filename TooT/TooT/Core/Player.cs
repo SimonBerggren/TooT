@@ -32,6 +32,7 @@ namespace TooT.Core
         private void InputManagement(GameTime _GT)
         {
 
+            //Animation Testing
             if (InputManager.IsKeyClicked(Microsoft.Xna.Framework.Input.Keys.Space))
             {
                 mAnimTextures[0].SwapToAnimation(AnimationName.Idle);
@@ -52,6 +53,29 @@ namespace TooT.Core
             {
                 mAnimTextures[0].SwapToAnimation(AnimationName.SpecialFour);
             }
+            
+            //Aim Debug
+            int dirX = 0, dirY = 0;
+            if (InputManager.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.I))
+                dirY -= 1;
+            if (InputManager.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.J))
+                dirX -= 1;
+            if (InputManager.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.L))
+                dirX += 1;
+            if (InputManager.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.K))
+                dirY += 1;
+            float result = 0; 
+            if (dirX != 0 || dirY != 0)
+            {
+                result = (float)Math.Atan2(dirY, dirX); //radians
+            }
+            mRotation = result;
+            mAnimTextures[0].Rotation = result;
+            mAnimTextures[0].Rotation += (float)(Math.PI / 2);
+            Console.WriteLine(dirX + "," + dirY);
+
+
+
             float InputX = 0.0f;
             float InputY = 0.0f;
             if (InputManager.PlayerOneJoystickLeft) InputX -= (float)(mMovementSpeed * _GT.ElapsedGameTime.TotalMilliseconds);
