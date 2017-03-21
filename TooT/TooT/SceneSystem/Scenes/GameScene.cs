@@ -17,7 +17,7 @@ namespace TooT.SceneSystem
         {
             mRoomManager = new RoomManager();
             mUIManager = new UIManager();
-            mRoomManager.mCurrentRoom.AddGameObject(new Player(new Vector2(50, 50), 1.0f, ContentManager.Circle));
+            mRoomManager.mCurrentRoom.AddGameObject(new Player(new Vector2(50, 50), 1.0f));
         }
 
         internal override bool HandleTransition(GameTime _GT)

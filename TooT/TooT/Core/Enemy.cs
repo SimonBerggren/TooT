@@ -10,7 +10,7 @@ namespace TooT.Core
 {
     abstract class Enemy : Pawn
     {
-        public Enemy(Vector2 _Pos, float _Scale, Texture2D _Texture) : base(_Pos, _Scale, _Texture)
+        public Enemy(Vector2 _Pos, float _Scale) : base(_Pos, _Scale)
         {
         }
     }

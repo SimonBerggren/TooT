@@ -1,44 +1,48 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TooT
 {
-    internal class GameObject
+    internal abstract class GameObject
     {
+        internal Room Parent { get { return mParent; } }
         private Room mParent;
         internal Vector2 Position { get {return mPosition; } }
         protected Vector2 mPosition;
-        AnimatedTexture mTexture;
+        internal Vector2 Center { get { return mCenter; } }
+        protected Vector2 mCenter;
+        protected List<AnimatedTexture> mAnimTextures;
+        internal float LayerDepth { get { return mLayerDepth; } }
         private float mLayerDepth;
         private SpriteEffects mSpriteEffect;
+        internal float Scale { get { return mScale; } }
         private float mScale;
-        private Vector2 mOrigin;
+        internal float Rotation { get { return mRotation; } }
         private float mRotation;
-        private Color mColor;
+        internal Color? OverrideColor = null;
 
-        internal GameObject(Vector2 _Pos, float _Scale, Texture2D _Texture)
+        internal GameObject(Vector2 _Pos, float _Scale)
         {
             mPosition = _Pos;
             mScale = _Scale;
-            mTexture = new AnimatedTexture(_Texture, _Texture.GetSize());
             mLayerDepth = 1.0f;
-            mSpriteEffect = SpriteEffects.None;
             mScale = 1.0f;
-            mOrigin = mTexture.Origin;
             mRotation = 0.0f;
-            mColor = Color.White;
+            mAnimTextures = new List<AnimatedTexture>();
         }
 
         internal virtual void Draw(SpriteBatch _SB)
         {
-            if (mParent == null) return;
-            _SB.Draw(mTexture.Texture, Position + mParent.Anchor, mTexture.SourceRec, mColor, mRotation, mOrigin, mScale, mSpriteEffect, mLayerDepth);
+            foreach (AnimatedTexture ATex in mAnimTextures)
+                ATex.Draw(_SB);
         }
 
         internal virtual void Update(GameTime _GT)
         {
-            mTexture.Animate(_GT);
+            foreach (AnimatedTexture ATex in mAnimTextures)
+                ATex.Update(_GT);
         }
 
         internal virtual void SetParent(Room _NewParent)
