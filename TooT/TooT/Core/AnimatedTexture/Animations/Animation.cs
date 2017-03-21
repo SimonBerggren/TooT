@@ -22,7 +22,7 @@ namespace TooT
     class Animation
     {
     
-
+        internal AnimationName Name { get; private set; }
         internal bool IsAnimation { get { return FramesInAnimation > 1; } }
         internal int FramesInAnimation { get; private set; }
         internal int FrameIndexBounds { get { return FramesInAnimation - 1; } }
@@ -33,8 +33,9 @@ namespace TooT
         internal bool AlwaysFinnish { get; private set; }
         internal bool Looping { get; private set; }
 
-        public Animation(IntVector2 _StartingIndex, int _FramesInAnimation, double _TimePerFrame, bool _RightToLeft, bool _BoomerangAnimation, bool _AlwaysFinnish, bool _Looping)
+        public Animation(AnimationName _Name, IntVector2 _StartingIndex, int _FramesInAnimation, double _TimePerFrame, bool _RightToLeft, bool _BoomerangAnimation, bool _AlwaysFinnish, bool _Looping)
         {
+            Name = _Name;
             StartingIndex = _StartingIndex;
             FramesInAnimation = _FramesInAnimation;
             TimerPerFrame = _TimePerFrame;

@@ -18,8 +18,8 @@ namespace TooT.Core
         public Player(Vector2 _Pos, float _Scale) : base(_Pos, _Scale)
         {
             mAnimTextures.Add(ContentManager.TestSheet(this));
-            mAnimTextures[0].SwapToAnimation(AnimationName.SpecialThree);
-            mAnimTextures[0].AnimationSpeedMultiplier = 0.1;
+            mAnimTextures[0].SwapToAnimation(AnimationName.Idle);
+            mAnimTextures[0].AnimationSpeedMultiplier = 0.8;
         }
 
         internal override void Update(GameTime _GT)
@@ -34,13 +34,23 @@ namespace TooT.Core
 
             if (InputManager.IsKeyClicked(Microsoft.Xna.Framework.Input.Keys.Space))
             {
-                    while (true)
-                    {
-                        if (mAnimTextures[0].SwapToAnimation((AnimationName)(++AnimationDebugIndex)))
-                            break;
-                    if (AnimationDebugIndex > Enum.GetValues(typeof(AnimationName)).Length)
-                        AnimationDebugIndex = 0;
-                    }
+                mAnimTextures[0].SwapToAnimation(AnimationName.Idle);
+            }
+            if (InputManager.IsKeyClicked(Microsoft.Xna.Framework.Input.Keys.D1))
+            {
+                mAnimTextures[0].SwapToAnimation(AnimationName.SpecialOne);
+            }
+            if (InputManager.IsKeyClicked(Microsoft.Xna.Framework.Input.Keys.D2))
+            {
+                mAnimTextures[0].SwapToAnimation(AnimationName.SpecialTwo);
+            }
+            if (InputManager.IsKeyClicked(Microsoft.Xna.Framework.Input.Keys.D3))
+            {
+                mAnimTextures[0].SwapToAnimation(AnimationName.SpecialThree);
+            }
+            if (InputManager.IsKeyClicked(Microsoft.Xna.Framework.Input.Keys.D4))
+            {
+                mAnimTextures[0].SwapToAnimation(AnimationName.SpecialFour);
             }
             float InputX = 0.0f;
             float InputY = 0.0f;

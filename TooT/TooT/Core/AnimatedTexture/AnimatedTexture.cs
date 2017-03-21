@@ -86,7 +86,7 @@ namespace TooT
                 {
                     if (FrameIndex == mCurrentAnimation.FrameIndexBounds)
                     {
-                        if (IsAnimationOver) SwapToAnimation(mNextAnimationName.HasValue ? mNextAnimationName.Value : AnimationName.Idle);
+                        if (IsAnimationOver) TrySwapToNextAnimation();
                         if (mCurrentAnimation.BoomerangAnimation)
                         {
                             mGoingRight = false;
@@ -106,7 +106,7 @@ namespace TooT
                 {
                     if (FrameIndex == 0)
                     {
-                        if (IsAnimationOver) SwapToAnimation(mNextAnimationName.HasValue ? mNextAnimationName.Value : AnimationName.Idle);
+                        if (IsAnimationOver) TrySwapToNextAnimation();
                         if (mCurrentAnimation.BoomerangAnimation)
                         {
                             mGoingRight = true;
@@ -125,14 +125,18 @@ namespace TooT
             }
         }
 
+        private void TrySwapToNextAnimation()
+        {
+            SwapToAnimation(mNextAnimationName.HasValue ? mNextAnimationName.Value : mCurrentAnimation.Looping ? mCurrentAnimation.Name : AnimationName.Idle);
+        }
+
         private bool IsAnimationOver
         {
             get
             {
-                if (!mCurrentAnimation.Looping && !mCurrentAnimation.BoomerangAnimation) return true;
                 if (mGoingRight &&
                     (CurrentAnimation.BoomerangAnimation && CurrentAnimation.RightToLeft) &&
-                    FrameIndex - mCurrentAnimation.FramesInAnimation == 0)
+                    FrameIndex - mCurrentAnimation.FrameIndexBounds == 0)
                     return true;
                 if (!mGoingRight &&
                     FrameIndex == 0 &&
@@ -141,7 +145,7 @@ namespace TooT
                     return true;
                 if (mGoingRight &&
                     !mCurrentAnimation.BoomerangAnimation &&
-                    FrameIndex == mCurrentAnimation.FramesInAnimation &&
+                    FrameIndex == mCurrentAnimation.FrameIndexBounds &&
                     !mCurrentAnimation.RightToLeft)
                     return true;
                 if (!mGoingRight &&
@@ -181,7 +185,11 @@ namespace TooT
         {
             if (!Animations.ContainsKey(_Name)) return false;
             if (CurrentAnimation.AlwaysFinnish && !IsAnimationOver) mNextAnimationName = _Name;
-            else CurrentAnimation = Animations[_Name];
+            else
+            {
+                CurrentAnimation = Animations[_Name];
+                mNextAnimationName = null;
+            }
             return true;
         }
 
