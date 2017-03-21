@@ -22,8 +22,9 @@ namespace TooT
             mCircle.AddAnimation(AnimationName.Idle, new Animation(new IntVector2(0, 0), 1, 1, false, false, false, true));
 
             mTestSheet = new AnimatedTexture(_Content.Load<Texture2D>("TestSheet"), new Vector2(100, 100), new Vector2(100, 100));
+            mTestSheet.AddAnimation(AnimationName.Idle, new Animation(new IntVector2(0, 9),6, 0.1, false, false, false, true));
             mTestSheet.AddAnimation(AnimationName.SpecialOne, new Animation(new IntVector2(0, 0),6, 0.1, false, false, false, true));
-            mTestSheet.AddAnimation(AnimationName.SpecialTwo, new Animation(new IntVector2(0, 1),7, 0.1, false, true, false, true));
+            mTestSheet.AddAnimation(AnimationName.SpecialTwo, new Animation(new IntVector2(0, 1),7, 0.1, false, true, true, true));
             mTestSheet.AddAnimation(AnimationName.SpecialThree, new Animation(new IntVector2(0, 2),7, 0.1, true, false, false, true));
 
         }

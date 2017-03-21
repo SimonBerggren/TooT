@@ -13,7 +13,7 @@ namespace TooT
         internal Dictionary<AnimationName, Animation> Animations { get; }
         private Animation mCurrentAnimation;
         private Animation CurrentAnimation { get { return mCurrentAnimation; } set { mCurrentAnimation = value; ResetAnimation(); } }
-        private Animation mNextAnimation;
+        private AnimationName? mNextAnimationName;
         internal double AnimationSpeedMultiplier = 1.0;
         internal Color Color { get; set; }
         private Texture2D mTexture;
@@ -86,6 +86,7 @@ namespace TooT
                 {
                     if (FrameIndex == mCurrentAnimation.FrameIndexBounds)
                     {
+                        if (IsAnimationOver) SwapToAnimation(mNextAnimationName.HasValue ? mNextAnimationName.Value : AnimationName.Idle);
                         if (mCurrentAnimation.BoomerangAnimation)
                         {
                             mGoingRight = false;
@@ -94,7 +95,6 @@ namespace TooT
                         }
                         else
                         {
-                            //IsAnimationOver?
                             FrameIndex = 0;
                             return;
                         }
@@ -106,6 +106,7 @@ namespace TooT
                 {
                     if (FrameIndex == 0)
                     {
+                        if (IsAnimationOver) SwapToAnimation(mNextAnimationName.HasValue ? mNextAnimationName.Value : AnimationName.Idle);
                         if (mCurrentAnimation.BoomerangAnimation)
                         {
                             mGoingRight = true;
@@ -114,7 +115,6 @@ namespace TooT
                         }
                         else
                         {
-                            //IsAnimationOver?
                             FrameIndex = mCurrentAnimation.FrameIndexBounds;
                             return;
                         }
@@ -125,24 +125,30 @@ namespace TooT
             }
         }
 
-
-        /// <summary>
-        /// NEEEDS WORK
-        /// </summary>
         private bool IsAnimationOver
-        { get
+        {
+            get
             {
-                if (mCurrentAnimation.Looping == false) return true;
+                if (!mCurrentAnimation.Looping && !mCurrentAnimation.BoomerangAnimation) return true;
                 if (mGoingRight &&
-                    CurrentAnimation.BoomerangAnimation && 
-                    CurrentAnimation.RightToLeft && 
+                    (CurrentAnimation.BoomerangAnimation && CurrentAnimation.RightToLeft) &&
                     FrameIndex - mCurrentAnimation.FramesInAnimation == 0)
                     return true;
-                if (mGoingRight &&
-                    !CurrentAnimation.BoomerangAnimation)
+                if (!mGoingRight &&
+                    FrameIndex == 0 &&
+                    mCurrentAnimation.RightToLeft &&
+                    !mCurrentAnimation.BoomerangAnimation)
                     return true;
-
-
+                if (mGoingRight &&
+                    !mCurrentAnimation.BoomerangAnimation &&
+                    FrameIndex == mCurrentAnimation.FramesInAnimation &&
+                    !mCurrentAnimation.RightToLeft)
+                    return true;
+                if (!mGoingRight &&
+                    mCurrentAnimation.BoomerangAnimation &&
+                    !mCurrentAnimation.RightToLeft &&
+                    FrameIndex == 0)
+                    return true;
                 return false;
             }
         }
@@ -174,7 +180,7 @@ namespace TooT
         internal bool SwapToAnimation(AnimationName _Name)
         {
             if (!Animations.ContainsKey(_Name)) return false;
-            if (CurrentAnimation.AlwaysFinnish) mNextAnimation = Animations[_Name];
+            if (CurrentAnimation.AlwaysFinnish && !IsAnimationOver) mNextAnimationName = _Name;
             else CurrentAnimation = Animations[_Name];
             return true;
         }
