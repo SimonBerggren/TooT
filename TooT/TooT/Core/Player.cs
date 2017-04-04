@@ -15,7 +15,7 @@ namespace TooT.Core
         //Debug
         int AnimationDebugIndex = 0;
 
-        public Player(Vector2 _Pos, float _Scale) : base(_Pos, _Scale)
+        public Player(Vector2 _Pos, float _Scale = 1.0f, float _Rotation = 1.0f) : base(_Pos, _Scale, _Rotation)
         {
             mAnimTextures.Add(ContentManager.TestSheet(this));
             mAnimTextures[0].SwapToAnimation(AnimationName.Idle);

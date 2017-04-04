@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace TooT
 {
     internal delegate void OnObjectFlaggedRemove(GameObject _Caller);
+    internal delegate void OnUpdateScore(float _Score);
 
     internal enum Event
     {

@@ -24,7 +24,9 @@ namespace TooT
         internal void Update(GameTime _GT)
         {
             foreach (GameObject obj in mObjects)
+            {
                 obj.Update(_GT);
+            }
             foreach (GameObject obj in mFlaggedForRemoval)
             {
                 mObjects.Remove(obj);

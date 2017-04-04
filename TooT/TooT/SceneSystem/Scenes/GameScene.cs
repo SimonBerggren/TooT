@@ -13,10 +13,13 @@ namespace TooT.SceneSystem
     {
         RoomManager mRoomManager;
         UIManager mUIManager;
+        GameManager mGameManager;
         internal GameScene()
         {
             mRoomManager = new RoomManager();
             mUIManager = new UIManager();
+            mGameManager = GameManager.Instance;
+            mGameManager.GameScene = this;
             mRoomManager.mCurrentRoom.AddGameObject(new Player(new Vector2(50, 50), 1.0f));
         }
 
@@ -28,12 +31,14 @@ namespace TooT.SceneSystem
         internal override void Update(GameTime _GT)
         {
             mRoomManager.Update(_GT);
+            mUIManager.Update(_GT);
             base.Update(_GT);
         }
 
         internal override void Draw(SpriteBatch _SB)
         {
             mRoomManager.Draw(_SB);
+            mUIManager.Draw(_SB);
             base.Draw(_SB);
         }
     }

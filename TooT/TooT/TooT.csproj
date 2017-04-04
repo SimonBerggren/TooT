@@ -41,7 +41,10 @@
     <Compile Include="Content\ContentManager.cs" />
     <Compile Include="Core\AnimatedTexture\AnimatedTexture.cs" />
     <Compile Include="Core\AnimatedTexture\Animations\Animation.cs" />
-    <Compile Include="Core\Enemy.cs" />
+    <Compile Include="Core\Controller.cs" />
+    <Compile Include="Core\Controllers\PlayerController.cs" />
+    <Compile Include="Core\Difficulty.cs" />
+    <Compile Include="Core\DummyPawn.cs" />
     <Compile Include="Core\GameObject.cs" />
     <Compile Include="Core\Managers\EventManager\Events.cs" />
     <Compile Include="Core\Managers\GameManager.cs" />

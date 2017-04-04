@@ -1,27 +1,25 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using TooT.SceneSystem;
 
-namespace TooT.Core
+namespace TooT
 {
+   
+
+
     class GameManager
     {
-        RoomManager mRoomManager;
-        UIManager mUIManager;
-        internal void Update(GameTime _GT)
+        internal static GameManager Instance { get { if (mInstance == null) mInstance = new GameManager(); return mInstance; } }
+        private static GameManager mInstance;
+        internal GameScene GameScene;
+        internal List<PlayerController> Players = new List<PlayerController>();
+
+        GameManager()
         {
-            mRoomManager.Update(_GT);
-            mUIManager.Update(_GT);
         }
 
-        internal void Draw(SpriteBatch _SB)
+        internal void RegisterNewPlayerController(PlayerController _Controller)
         {
-            mRoomManager.Draw(_SB);
-            mUIManager.Draw(_SB);
+            Players.Add(_Controller);
         }
     }
 }

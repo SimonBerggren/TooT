@@ -23,13 +23,12 @@ namespace TooT
         protected float mRotation;
         internal Color? OverrideColor = null;
 
-        internal GameObject(Vector2 _Pos, float _Scale)
+        internal GameObject(Vector2 _Pos, float _Scale = 1.0f, float _Rotation = 0.0f)
         {
             mPosition = _Pos;
             mScale = _Scale;
             mLayerDepth = 1.0f;
-            mScale = 1.0f;
-            mRotation = 0.0f;
+            mRotation = _Rotation;
             mAnimTextures = new List<AnimatedTexture>();
         }
 
