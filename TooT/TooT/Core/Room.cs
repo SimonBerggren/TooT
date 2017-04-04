@@ -12,6 +12,7 @@ namespace TooT
     {
         List<GameObject> mObjects;
         List<GameObject> mFlaggedForRemoval;
+        List<GameObject> mFlaggedForAdding;
         internal Vector2 Anchor { get { return mPosition; } }
         private Vector2 mPosition;
         internal Room()
@@ -19,6 +20,7 @@ namespace TooT
             mPosition = Vector2.Zero;
             mObjects = new List<GameObject>();
             mFlaggedForRemoval = new List<GameObject>();
+            mFlaggedForAdding = new List<GameObject>();
         }
 
         internal void Update(GameTime _GT)
@@ -32,6 +34,11 @@ namespace TooT
                 mObjects.Remove(obj);
                 EventManager.Fire(Event.OnObjectRemove, obj);
             }
+            foreach (GameObject obj in mFlaggedForAdding)
+            {
+                mObjects.Add(obj);
+            }
+                mFlaggedForAdding.Clear();
         }
 
         internal void Draw(SpriteBatch _SB)
@@ -42,9 +49,9 @@ namespace TooT
 
         internal void AddGameObject(GameObject _Obj)
         {
-            mObjects.Add(_Obj);
+            mFlaggedForAdding.Add(_Obj);
             _Obj.SetParent(this);
-            EventManager.Subscribe(Event.OnObjectFlaggedRemove, new Action(() => AddToRemoveList(_Obj)));
+            EventManager.Subscribe(Event.OnObjectFlaggedRemove, new Action<GameObject>(AddToRemoveList));
         }
 
         private void AddToRemoveList(GameObject _Obj)

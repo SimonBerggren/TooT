@@ -15,19 +15,35 @@ namespace TooT
         private static bool mPlayerOneJoystickLeft;
         private static bool mPlayerOneJoystickRight;
 
-        internal static bool PlayerOneButtonMoveJump { get { return mPlayerOneButtonMoveJump; } }
-        internal static bool PlayerOneButtonMoveLeft { get { return mPlayerOneButtonMoveLeft; } }
-        internal static bool PlayerOneButtonMoveRight { get { return mPlayerOneButtonMoveRight; } }
-        private static bool mPlayerOneButtonMoveLeft;
-        private static bool mPlayerOneButtonMoveRight;
-        private static bool mPlayerOneButtonMoveJump;
+        internal static bool PlayerOneButtonMiddleLower { get { return mPlayerOneButtonMiddleLower; } }
+        internal static bool PlayerOneButtonLeftLower { get { return mPlayerOneButtonLeftLower; } }
+        internal static bool PlayerOneButtonRightLower { get { return mPlayerOneButtonRightLower; } }
+        private static bool mPlayerOneButtonLeftLower;
+        private static bool mPlayerOneButtonRightLower;
+        private static bool mPlayerOneButtonMiddleLower;
 
-        internal static bool PlayerOneButtonSpawnOne { get { return mPlayerOneButtonSpawnOne; } }
-        internal static bool PlayerOneButtonSpawnTwo { get { return mPlayerOneButtonSpawnTwo; } }
-        internal static bool PlayerOneButtonSpawnThree { get { return mPlayerOneButtonSpawnThree; } }
-        private static bool mPlayerOneButtonSpawnOne;
-        private static bool mPlayerOneButtonSpawnTwo;
-        private static bool mPlayerOneButtonSpawnThree;
+        internal static bool PlayerOneButtonLeftUpper { get { return mPlayerOneButtonLeftUpper; } }
+        internal static bool PlayerOneButtonMiddleUpper { get { return mPlayerOneButtonMiddleUpper; } }
+        internal static bool PlayerOneButtonRightUpper { get { return mPlayerOneButtonRightUpper; } }
+        private static bool mPlayerOneButtonLeftUpper;
+        private static bool mPlayerOneButtonMiddleUpper;
+        private static bool mPlayerOneButtonRightUpper;
+
+        internal static bool PlayerOneButtonAnyKey
+        {
+            get
+            {
+                return
+                    (
+                        mPlayerOneButtonLeftLower ||
+                        mPlayerOneButtonLeftUpper ||
+                        mPlayerOneButtonMiddleLower ||
+                        mPlayerOneButtonMiddleUpper ||
+                        mPlayerOneButtonRightLower ||
+                        mPlayerOneButtonRightUpper
+                    );
+            }
+        }
         #endregion
 
         #region PlayerTwo
@@ -40,19 +56,35 @@ namespace TooT
         private static bool mPlayerTwoJoystickLeft;
         private static bool mPlayerTwoJoystickRight;
 
-        internal static bool PlayerTwoButtonMoveJump { get { return mPlayerTwoButtonMoveJump; } }
-        internal static bool PlayerTwoButtonMoveLeft { get { return mPlayerTwoButtonMoveLeft; } }
-        internal static bool PlayerTwoButtonMoveRight { get { return mPlayerTwoButtonMoveRight; } }
-        private static bool mPlayerTwoButtonMoveLeft;
-        private static bool mPlayerTwoButtonMoveRight;
-        private static bool mPlayerTwoButtonMoveJump;
+        internal static bool PlayerTwoButtonMiddleLower { get { return mPlayerTwoButtonMiddleLower; } }
+        internal static bool PlayerTwoButtonLeftLower { get { return mPlayerTwoButtonLeftLower; } }
+        internal static bool PlayerTwoButtonRightLower { get { return mPlayerTwoButtonRightLower; } }
+        private static bool mPlayerTwoButtonLeftLower;
+        private static bool mPlayerTwoButtonRightLower;
+        private static bool mPlayerTwoButtonMiddleLower;
 
-        internal static bool PlayerTwoButtonSpawnOne { get { return mPlayerTwoButtonSpawnOne; } }
-        internal static bool PlayerTwoButtonSpawnTwo { get { return mPlayerTwoButtonSpawnTwo; } }
-        internal static bool PlayerTwoButtonSpawnThree { get { return mPlayerTwoButtonSpawnThree; } }
-        private static bool mPlayerTwoButtonSpawnOne;
-        private static bool mPlayerTwoButtonSpawnTwo;
-        private static bool mPlayerTwoButtonSpawnThree;
+        internal static bool PlayerTwoButtonLeftUpper { get { return mPlayerTwoButtonLeftUpper; } }
+        internal static bool PlayerTwoButtonMiddleUpper { get { return mPlayerTwoButtonMiddleUpper; } }
+        internal static bool PlayerTwoButtonRightUpper { get { return mPlayerTwoButtonRightUpper; } }
+        private static bool mPlayerTwoButtonLeftUpper;
+        private static bool mPlayerTwoButtonMiddleUpper;
+        private static bool mPlayerTwoButtonRightUpper;
+
+        internal static bool PlayerTwoButtonAnyKey
+        {
+            get
+            {
+                return
+                    (
+                        mPlayerTwoButtonLeftLower ||
+                        mPlayerTwoButtonLeftUpper ||
+                        mPlayerTwoButtonMiddleLower ||
+                        mPlayerTwoButtonMiddleUpper ||
+                        mPlayerTwoButtonRightLower ||
+                        mPlayerTwoButtonRightUpper
+                    );
+            }
+        }
         #endregion
 
         #region Both
@@ -72,23 +104,23 @@ namespace TooT
             mKeyboardState = Keyboard.GetState();
             mMouseState = Mouse.GetState();
 
-            mPlayerOneButtonMoveJump = IsKeyPressed(Keys.NumPad2);
-            mPlayerOneButtonMoveLeft = IsKeyPressed(Keys.NumPad1);
-            mPlayerOneButtonMoveRight = IsKeyPressed(Keys.NumPad3);
-            mPlayerOneButtonSpawnOne = IsKeyClicked(Keys.NumPad4);
-            mPlayerOneButtonSpawnTwo = IsKeyClicked(Keys.NumPad5);
-            mPlayerOneButtonSpawnThree = IsKeyClicked(Keys.NumPad6);
+            mPlayerOneButtonLeftUpper = IsKeyClicked(Keys.NumPad4);
+            mPlayerOneButtonLeftLower = IsKeyPressed(Keys.NumPad1);
+            mPlayerOneButtonMiddleUpper = IsKeyClicked(Keys.NumPad5);
+            mPlayerOneButtonMiddleLower = IsKeyPressed(Keys.NumPad2);
+            mPlayerOneButtonRightUpper = IsKeyClicked(Keys.NumPad6);
+            mPlayerOneButtonRightLower = IsKeyPressed(Keys.NumPad3);
             mPlayerOneJoystickUp = IsKeyPressed(Keys.Up);
             mPlayerOneJoystickDown = IsKeyPressed(Keys.Down);
             mPlayerOneJoystickLeft = IsKeyPressed(Keys.Left);
             mPlayerOneJoystickRight = IsKeyPressed(Keys.Right);
 
-            mPlayerTwoButtonMoveJump = IsKeyPressed(Keys.H);
-            mPlayerTwoButtonMoveLeft = IsKeyPressed(Keys.G);
-            mPlayerTwoButtonMoveRight = IsKeyPressed(Keys.J);
-            mPlayerTwoButtonSpawnOne = IsKeyClicked(Keys.U);
-            mPlayerTwoButtonSpawnTwo = IsKeyClicked(Keys.I);
-            mPlayerTwoButtonSpawnThree = IsKeyClicked(Keys.O);
+            mPlayerTwoButtonLeftUpper = IsKeyClicked(Keys.U);
+            mPlayerTwoButtonLeftLower = IsKeyPressed(Keys.G);
+            mPlayerTwoButtonMiddleUpper = IsKeyClicked(Keys.I);
+            mPlayerTwoButtonMiddleLower = IsKeyPressed(Keys.H);
+            mPlayerTwoButtonRightUpper = IsKeyClicked(Keys.O);
+            mPlayerTwoButtonRightLower = IsKeyPressed(Keys.J);
             mPlayerTwoJoystickUp = IsKeyPressed(Keys.W);
             mPlayerTwoJoystickDown = IsKeyPressed(Keys.S);
             mPlayerTwoJoystickLeft = IsKeyPressed(Keys.A);

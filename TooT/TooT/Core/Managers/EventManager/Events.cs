@@ -8,6 +8,7 @@ namespace TooT
 {
     internal delegate void OnObjectFlaggedRemove(GameObject _Caller);
     internal delegate void OnUpdateScore(float _Score);
+    internal delegate void OnDummyPawnControlledPlayerClick(PlayerController _Caller);
 
     internal enum Event
     {
@@ -15,5 +16,6 @@ namespace TooT
         OnNextRoom = 1,
         OnObjectFlaggedRemove = 2,
         OnObjectRemove = 3,
+        OnDummyPawnControlledPlayerClick = 4,
     }
 }

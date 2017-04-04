@@ -6,21 +6,27 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TooT.Core;
+using TooT.Core.Factories;
 
 namespace TooT.SceneSystem
 {
     internal class GameScene : Scene
     {
+        internal RoomManager RoomManager { get { return mRoomManager; } }
         RoomManager mRoomManager;
         UIManager mUIManager;
         GameManager mGameManager;
-        internal GameScene()
+        internal GameScene(int _NumberOfPlayers = 1)
         {
             mRoomManager = new RoomManager();
             mUIManager = new UIManager();
             mGameManager = GameManager.Instance;
             mGameManager.GameScene = this;
-            mRoomManager.mCurrentRoom.AddGameObject(new Player(new Vector2(50, 50), 1.0f));
+            for (int i = 0; i < _NumberOfPlayers; i++)
+            {
+                Pawn tPawn = PawnFactory.Instance.Generate(PawnFactory.PawnType.Dummy, PawnFactory.ControllerType.Player, Vector2.Zero);
+                mRoomManager.mCurrentRoom.AddGameObject(tPawn);
+            }
         }
 
         internal override bool HandleTransition(GameTime _GT)

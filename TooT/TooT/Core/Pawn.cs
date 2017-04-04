@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TooT
 {
-    abstract class Pawn : GameObject
+    abstract class Pawn /*poop*/: GameObject
     {
         internal Controller Controller;
         internal Pawn(Vector2 _Pos, float _Scale = 1.0f, float _Rotation = 1.0f) : base(_Pos, _Scale, _Rotation)
@@ -23,12 +23,12 @@ namespace TooT
             base.Update(_GT);
         }
 
-        internal void Possessed(Controller _Controller)
+        internal virtual void Possessed(Controller _Controller)
         {
             Controller = _Controller;
         }
 
-        internal void UnPossessed()
+        internal virtual void UnPossessed()
         {
             Controller = null;
         }

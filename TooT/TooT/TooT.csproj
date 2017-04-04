@@ -45,6 +45,7 @@
     <Compile Include="Core\Controllers\PlayerController.cs" />
     <Compile Include="Core\Difficulty.cs" />
     <Compile Include="Core\DummyPawn.cs" />
+    <Compile Include="Core\Factories\PawnFactory.cs" />
     <Compile Include="Core\GameObject.cs" />
     <Compile Include="Core\Managers\EventManager\Events.cs" />
     <Compile Include="Core\Managers\GameManager.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="Core\MapGenerator.cs" />
     <Compile Include="Core\Misc\IntVector2.cs" />
     <Compile Include="Core\Pawn.cs" />
-    <Compile Include="Core\Player.cs" />
+    <Compile Include="Core\PlayerPawn.cs" />
     <Compile Include="Core\Room.cs" />
     <Compile Include="Core\Utils.cs" />
     <Compile Include="Core\Managers\EventManager\EventManager.cs" />
