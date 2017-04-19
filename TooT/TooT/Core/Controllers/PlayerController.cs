@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using TooT.Control;
+using TooT.Core.ParticleSystem;
 
 namespace TooT.Control
 {
@@ -74,6 +76,18 @@ namespace TooT
             mControls.Update(PlayerIndex);
             if (Pawn is DummyPawn && mControls.AnyKey)
             { EventManager.Fire(Event.OnDummyPawnControlledPlayerClick, this); base.Update(_GT); return; }
+
+
+            //DEBUG
+            if (!(Pawn is DummyPawn))
+                if (InputManager.IsKeyClicked(Microsoft.Xna.Framework.Input.Keys.J))
+                {
+                    List<PsEmitterSpawnInstruction> instructions = new List<PsEmitterSpawnInstruction>();
+                    instructions.Add(new PsEmitterSpawnInstruction(0, 10, new PsEmitterSettings(10 - 0, 5, 0.25, 10, PsPspCircle.Instance, ContentManager.Explosion(Pawn))));
+                    ParticleEngine.Instance.SpawnCustomParticleSystem(Pawn.Position, instructions);
+                }
+
+
             base.Update(_GT);
         }
     }

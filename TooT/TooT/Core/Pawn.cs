@@ -16,11 +16,11 @@ namespace TooT
 
         }
 
-        internal override void Update(GameTime _GT)
+        internal override bool Update(GameTime _GT)
         {
             if (Controller != null)
                 Controller.Update(_GT);
-            base.Update(_GT);
+           return base.Update(_GT);
         }
 
         internal virtual void Possessed(Controller _Controller)

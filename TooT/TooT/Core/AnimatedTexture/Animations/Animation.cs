@@ -32,8 +32,9 @@ namespace TooT
         internal bool BoomerangAnimation { get; private set; }
         internal bool AlwaysFinnish { get; private set; }
         internal bool Looping { get; private set; }
+        internal bool RandomStartingIndex { get; private set; }
 
-        public Animation(AnimationName _Name, IntVector2 _StartingIndex, int _FramesInAnimation, double _TimePerFrame, bool _RightToLeft, bool _BoomerangAnimation, bool _AlwaysFinnish, bool _Looping)
+        public Animation(AnimationName _Name, IntVector2 _StartingIndex, int _FramesInAnimation, double _TimePerFrame, bool _RightToLeft, bool _BoomerangAnimation, bool _AlwaysFinnish, bool _Looping, bool _RandomStartIndex = false)
         {
             Name = _Name;
             StartingIndex = _StartingIndex;
@@ -43,6 +44,7 @@ namespace TooT
             BoomerangAnimation = _BoomerangAnimation;
             AlwaysFinnish = _AlwaysFinnish;
             Looping = _Looping;
+            RandomStartingIndex = _RandomStartIndex;
         }
     }
 }

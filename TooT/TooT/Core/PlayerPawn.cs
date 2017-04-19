@@ -12,14 +12,14 @@ namespace TooT.Core
     {
         public PlayerPawn(Vector2 _Pos, float _Scale = 1.0f, float _Rotation = 1.0f) : base(_Pos, _Scale, _Rotation)
         {
-            mAnimTextures.Add(ContentManager.TestSheet(this));
+            mAnimTextures.Add(ContentManager.Circle(this));
             mAnimTextures[0].SwapToAnimation(AnimationName.Idle);
             mAnimTextures[0].AnimationSpeedMultiplier = 0.8;
         }
 
-        internal override void Update(GameTime _GT)
+        internal override bool Update(GameTime _GT)
         {
-            base.Update(_GT);
+           return base.Update(_GT);
         }
 
     }

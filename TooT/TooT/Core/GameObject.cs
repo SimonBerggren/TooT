@@ -38,10 +38,11 @@ namespace TooT
                 ATex.Draw(_SB);
         }
 
-        internal virtual void Update(GameTime _GT)
+        internal virtual bool Update(GameTime _GT)
         {
             foreach (AnimatedTexture ATex in mAnimTextures)
                 ATex.Update(_GT);
+            return false;
         }
 
         internal virtual void SetParent(Room _NewParent)

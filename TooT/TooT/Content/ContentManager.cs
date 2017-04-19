@@ -7,6 +7,8 @@ namespace TooT
     {
         public static AnimatedTexture Circle(GameObject _Owner) { return new AnimatedTexture(mCircle, _Owner, null); }
         private static AnimatedTexture mCircle;
+        public static AnimatedTexture Explosion(GameObject _Owner) { return new AnimatedTexture(mExplosion, _Owner, null); }
+        private static AnimatedTexture mExplosion;
         public static AnimatedTexture TestSheet(GameObject _Owner) { return new AnimatedTexture(mTestSheet, _Owner, null); }
         private static AnimatedTexture mTestSheet;
         internal static Texture2D Dot { get; private set; }
@@ -20,6 +22,9 @@ namespace TooT
             Font = _Content.Load<SpriteFont>("PixelFont");
             mCircle = new AnimatedTexture(_Content.Load<Texture2D>("FancyCircle"), new Vector2(594, 594), new Vector2(100, 100));
             mCircle.AddAnimation(AnimationName.Idle, new Animation(AnimationName.Idle, new IntVector2(0, 0), 1, 1, false, false, false, true));
+
+            mExplosion = new AnimatedTexture(_Content.Load<Texture2D>("Explosion"), new Vector2(64, 64), new Vector2(64, 64));
+            mExplosion.AddAnimation(AnimationName.Idle, new Animation(AnimationName.Idle, new IntVector2(0, 0), 16, 0.01, false, true, false, true, true));
 
             mTestSheet = new AnimatedTexture(_Content.Load<Texture2D>("TestSheet"), new Vector2(100, 100), new Vector2(100, 100));
             mTestSheet.AddAnimation(AnimationName.Idle, new Animation(AnimationName.Idle, new IntVector2(0, 0),7, 0.1, false, false, false,true));

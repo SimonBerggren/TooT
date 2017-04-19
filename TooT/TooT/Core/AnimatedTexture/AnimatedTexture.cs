@@ -65,6 +65,29 @@ namespace TooT
             ShouldAnimate = _StartAnimating;
         }
 
+        internal AnimatedTexture(AnimatedTexture _Source)
+        {
+            mTexture = _Source.mTexture;
+            mFrameSize = _Source.mFrameSize;
+            SourceRec = new Rectangle(_Source.SourceRec.X, _Source.SourceRec.Y, _Source.SourceRec.Width, _Source.SourceRec.Height);
+            Animations = _Source.Animations;
+            CurrentAnimation = _Source.CurrentAnimation;
+            Color = _Source.Color;
+            DrawSize = _Source.DrawSize;
+            mOwner = _Source.mOwner;
+            mOwnerLastRotation = mOwner.Rotation;
+            Anchor = _Source.Anchor;
+            ShouldAnimate = _Source.ShouldAnimate;
+            UpdateSourceRecPosition();
+            
+        }
+
+        internal void SetNewOwner(GameObject _NewOwner)
+        {
+            mOwner = _NewOwner;
+            mOwnerLastRotation = _NewOwner.Rotation;
+        }
+
         internal void Draw(SpriteBatch _SB)
         {
             _SB.Draw(mTexture, mOwner.Position + Anchor, SourceRec, mOwner.OverrideColor.HasValue ? mOwner.OverrideColor.Value : Color, Rotation, Origin, mScale, Effect, mOwner.LayerDepth + LayerDepth);
@@ -198,6 +221,8 @@ namespace TooT
             FrameIndex = CurrentAnimation.RightToLeft ? CurrentAnimation.FramesInAnimation - 1 : 0;
             mGoingRight = CurrentAnimation.RightToLeft ? false : true;
             mAnimationTimer = 0;
+            if (mCurrentAnimation.RandomStartingIndex)
+                FrameIndex = Utils.Random.Next(0, mCurrentAnimation.FrameIndexBounds);
         }
 
         private void CalculateScale()

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TooT.Core.ParticleSystem;
 
 namespace TooT
 {
@@ -31,6 +32,7 @@ namespace TooT
 
         protected override void Update(GameTime gameTime)
         {
+            ParticleEngine.Instance.Update(gameTime);
             InputManager.Update();
             if (/*InputManager.IsKeyPressed(Keys.Escape) ||*/ !SceneManager.Update(gameTime))
                 Exit();
@@ -41,6 +43,7 @@ namespace TooT
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             SceneManager.Draw(spriteBatch);
+            ParticleEngine.Instance.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
